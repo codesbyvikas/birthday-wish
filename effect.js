@@ -172,22 +172,18 @@ $('document').ready(function(){
 		
 		var i;
 
-		function msgLoop (i) {
-			$("p:nth-child("+i+")").fadeOut('slow').delay(800).promise().done(function(){
-			i=i+1;
-			$("p:nth-child("+i+")").fadeIn('slow').delay(1000);
-			if(i==50){
-				$("p:nth-child(49)").fadeOut('slow').promise().done(function () {
-					$('.cake').fadeIn('fast');
-				});
-				
-			}
-			else{
-				msgLoop(i);
-			}			
-
-		});
-			// body...
+		function msgLoop(i) {
+			$("p:nth-child(" + i + ")").fadeOut('slow').delay(400).promise().done(function () {
+				i = i + 1;
+				$("p:nth-child(" + i + ")").fadeIn('slow').delay(1600);
+				if (i == 50) {
+					$("p:nth-child(49)").fadeOut('slow').promise().done(function () {
+						$('.cake').fadeIn('fast');
+					});
+				} else {
+					msgLoop(i);
+				}
+			});
 		}
 		
 		msgLoop(0);
@@ -195,6 +191,22 @@ $('document').ready(function(){
 	});
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+    const welcomeAnimation = document.getElementById("welcome-animation");
+    const modiSong = document.getElementById("modi-song");
+
+    // Play the welcome animation and then the song
+    setTimeout(() => {
+        welcomeAnimation.style.display = "none"; // Hide welcome animation
+        modiSong.play(); // Play the Modi song
+    }, 3000); // Show the animation for 3 seconds before playing the song
+
+    // Optionally, you could listen for the song's end to continue with other actions
+    modiSong.addEventListener('ended', () => {
+        // Code to continue with the rest of your page
+        console.log('Song has ended, continuing...');
+    });
+});
 
 
 
